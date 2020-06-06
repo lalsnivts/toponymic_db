@@ -1,0 +1,23 @@
+{% load static %}
+
+<table>
+    <tr>
+        <th>Geoname</th>
+        <th>Name translation (ru)</th>
+        <th>Motivation comment</th>
+        <th>Linguistic means</th>
+        <th>Source</th>
+        <th>Motivation</th>
+    </tr>
+    {% for item in geonames %}
+    <tr>
+        <td><a href="{% url 'toponymic_db:detail' item.geoname_id %}"> {{ item.geoname }}</a></td>
+        <td>{{ item.name_translation_ru }}</td>
+        <td>{{ item.motivation_comment }}</td>
+        <td>{{ item.linguistic_means }}</td>
+        <td>{{ item.language_id }}</td>
+        <td>{{ item.source_id }}</td>
+        <td>{{ item.motivation_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
