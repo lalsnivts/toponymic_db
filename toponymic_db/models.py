@@ -53,9 +53,15 @@ class GeoSystems(models.Model):
     geo_system_ru = models.CharField(max_length=200, unique=True, null=False)
     geo_system_en = models.CharField(max_length=200, unique=True, null=False)
 
+    def __str__(self):
+        return self.geo_system_en
+
 class MapsSystems(models.Model):
     map_id = models.ForeignKey(Maps, on_delete=models.SET_NULL, null=True, unique=False)
     geo_system_id = models.ForeignKey(GeoSystems, on_delete=models.SET_NULL, null=True, unique=False)
+
+    def __str__(self):
+        return self.map_id.area_name_en + ':' + self.geo_system_id.geo_system_en
 
 class GeoObjects(models.Model):
     geoobject_id = models.AutoField(primary_key=True)
