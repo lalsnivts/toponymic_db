@@ -23,7 +23,7 @@
             <td><a href="{% url 'toponymic_db:detail' item.geoname_id %}"> {{ item.geoname }}</a></td>
             <td>{{ item.name_translation_ru }}</td>
             <td>{{ item.motivation_comment }}</td>
-            <td>{{ item.linguistic_means }}</td>
+            <td>{{ item.linguistic_means|default_if_none:"" }}</td>
             <td>{{ item.motivation_id }}</td>
         </tr>
         {% endfor %}
