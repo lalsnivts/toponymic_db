@@ -28,15 +28,15 @@
         </tr>
         <tr>
             <td class="geo-feature">Translation</td>
-            <td>{{ geonames.name_translation_ru }}</td>
+            <td>{{ geonames.name_translation_ru  | default_if_none:"" }}</td>
         </tr>
         <tr>
             <td class="geo-feature">Motivation comment</td>
-            <td>{{ geonames.motivation_comment }}</td>
+            <td>{{ geonames.motivation_comment  | default_if_none:"" }}</td>
         </tr>
         <tr>
             <td class="geo-feature">Linguistic means</td>
-            <td>{{ geonames.linguistic_means }}</td>
+            <td>{{ geonames.linguistic_means | default_if_none:"" }}</td>
         </tr>
         <tr>
             <td class="geo-feature">Area</td>
@@ -48,6 +48,11 @@
         </tr>
     </tbody>
 </table>
-<div id="map" style="height: 580px; " data-latitude="55.753960" data-longitude="37.620393" data-title="{{ geonames.geoname }}"></div>
-
+{% if geonames.geoobject_id.latitude != 0 %}
+<div id="map" style="height: 580px; " data-latitude="{{ geonames.geoobject_id.latitude }}"
+     data-longitude="{{ geonames.geoobject_id.longitude }}" data-title="{{ geonames.geoname }}"></div>
+{% else %}
+<div id="map" style="height: 0px; " data-latitude="0"
+     data-longitude="0" data-title="{{ geonames.geoname }}"></div>
+{% endif %}
 
